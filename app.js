@@ -35,6 +35,92 @@ const render = require("./lib/htmlRenderer");
 
 const team = [];
 
+// Define validation functions
+function containsNumber(string) {
+  return /\d/.test(string);
+}
+
+function containsLetter(string) {
+  return /[a-z]/i.test(string);
+}
+
+function containsSpecialChar(string) {
+  return /\W/.test(string);
+}
+
+// TODO
+function containsAtSign(string) {
+  return /@/.test(string);
+}
+
+// TODO
+function containsPeriod(string) {
+  return /\./.test(string);
+}
+
+function validateName(name) {
+  if (name.length < 2 || !containsLetter(name) || containsNumber(name)) {
+    return "Invalid entry.";
+  } else {
+    return true;
+  }
+}
+
+function validateID(ID) {
+  if (ID === "" || containsLetter(ID) || containsSpecialChar(ID)) {
+    return "Invalid entry.";
+  } else {
+    return true;
+  }
+}
+
+function validateEmail(email) {
+  if (
+    email.length < 6 ||
+    !containsLetter(email) ||
+    !containsAtSign(email) ||
+    !containsPeriod(email)
+  ) {
+    return "Invalid entry";
+  } else {
+    return true;
+  }
+}
+
+function validateOfficeNumber(officeNumber) {
+  return validateID(officeNumber);
+}
+
+function validateGitHub(GitHub) {
+  if (
+    GitHub.length < 6 ||
+    GitHub.length > 39 ||
+    !containsLetter(GitHub) ||
+    containsSpecialChar(GitHub)
+  ) {
+    return "Invalid entry.";
+  } else {
+    return true;
+  }
+}
+
+function validateSchool(school) {
+  if (school.length < 2 || !containsLetter(school)) {
+    return "Invalid entry.";
+  } else {
+    return true;
+  }
+}
+
+function toTitleCase(string) {
+  const wordArr = [];
+  for (const word of string.toLowerCase().split(" ")) {
+    wordArr.push(word.charAt(0).toUpperCase() + word.slice(1));
+  }
+  return wordArr.join(" ");
+}
+
+// Start of CLI program
 async function createTeam() {
   // Greet user
   console.log(
@@ -45,25 +131,29 @@ async function createTeam() {
   const { managerName } = await inquirer.prompt({
     message: "Enter the manager's name:",
     name: "managerName",
+    validate: validateName,
   });
   const { managerID } = await inquirer.prompt({
     message: "Enter the manager's ID:",
     name: "managerID",
+    validate: validateID,
   });
   const { managerEmail } = await inquirer.prompt({
     message: "Enter the manager's email:",
     name: "managerEmail",
+    validate: validateEmail,
   });
   const { managerOfficeNumber } = await inquirer.prompt({
     message: "Enter the manager's office number:",
     name: "managerOfficeNumber",
+    validate: validateOfficeNumber,
   });
 
   // Create manager object and push to team array
   manager = new Manager(
-    managerName,
+    toTitleCase(managerName),
     managerID,
-    managerEmail,
+    managerEmail.toLowerCase(),
     managerOfficeNumber
   );
   team.push(manager);
@@ -71,12 +161,11 @@ async function createTeam() {
   while (true) {
     // Ask user to add another employee
     const { addEmployee } = await inquirer.prompt({
-      type: "list",
+      type: "confirm",
       message: "Add another employee?",
       name: "addEmployee",
-      choices: ["Yes", "No"],
     });
-    if (addEmployee === "No") break;
+    if (addEmployee === false) break;
 
     // Ask for employee's type
     const { employeeType } = await inquirer.prompt({
@@ -90,41 +179,46 @@ async function createTeam() {
     const { employeeName } = await inquirer.prompt({
       message: `Enter the ${employeeType.toLowerCase()}'s name:`,
       name: "employeeName",
+      validate: validateName,
     });
     const { employeeID } = await inquirer.prompt({
       message: `Enter the ${employeeType.toLowerCase()}'s ID:`,
       name: "employeeID",
+      validate: validateID,
     });
     const { employeeEmail } = await inquirer.prompt({
       message: `Enter the ${employeeType.toLowerCase()}'s email:`,
       name: "employeeEmail",
+      validate: validateEmail,
     });
     if (employeeType === "Engineer") {
       const { engineerGitHub } = await inquirer.prompt({
         message: "Enter the engineer's GitHub:",
         name: "engineerGitHub",
+        validate: validateGitHub,
       });
 
       // Create engineer object and push to team array
       engineer = new Engineer(
-        employeeName,
+        toTitleCase(employeeName),
         employeeID,
-        employeeEmail,
-        engineerGitHub
+        employeeEmail.toLowerCase(),
+        engineerGitHub.toLowerCase()
       );
       team.push(engineer);
     } else {
       const { internSchool } = await inquirer.prompt({
         message: "Enter the intern's school:",
         name: "internSchool",
+        validate: validateSchool,
       });
 
       // Create intern object and push to team array
       intern = new Intern(
-        employeeName,
+        toTitleCase(employeeName),
         employeeID,
-        employeeEmail,
-        internSchool
+        employeeEmail.toLowerCase(),
+        toTitleCase(internSchool)
       );
       team.push(intern);
     }
