@@ -36,82 +36,61 @@ const render = require("./lib/htmlRenderer");
 const team = [];
 
 // Define validation functions
-function containsNumber(string) {
-  return /\d/.test(string);
-}
-
-function containsLetter(string) {
-  return /[a-z]/i.test(string);
-}
-
-function containsSpecialChar(string) {
-  return /\W/.test(string);
-}
-
-// TODO
-function containsAtSign(string) {
-  return /@/.test(string);
-}
-
-// TODO
-function containsPeriod(string) {
-  return /\./.test(string);
-}
-
 function validateName(name) {
-  if (name.length < 2 || !containsLetter(name) || containsNumber(name)) {
-    return "Invalid entry.";
-  } else {
+  const re = /^[a-zA-Z]{2,30}$/;
+  if (re.test(name)) {
     return true;
+  } else {
+    return "Invalid name. Names must be 2 to 30 characters long and can only contain letters.";
   }
 }
 
 function validateID(ID) {
-  if (ID === "" || containsLetter(ID) || containsSpecialChar(ID)) {
-    return "Invalid entry.";
-  } else {
+  const re = /^\d{1,}$/;
+  if (re.test(ID)) {
     return true;
+  } else {
+    return "Invalid ID. IDs can only contain numbers.";
   }
 }
 
 function validateEmail(email) {
-  if (
-    email.length < 6 ||
-    !containsLetter(email) ||
-    !containsAtSign(email) ||
-    !containsPeriod(email)
-  ) {
-    return "Invalid entry";
-  } else {
+  const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  if (re.test(email)) {
     return true;
+  } else {
+    return "Invalid email. Emails should be of the form 'local-part@domain' and should comply with RFC 2822 (https://tools.ietf.org/html/rfc2822).";
   }
 }
 
 function validateOfficeNumber(officeNumber) {
-  return validateID(officeNumber);
+  const re = /^\d{1,}$/;
+  if (re.test(officeNumber)) {
+    return true;
+  } else {
+    return "Invalid office number. Office numbers can only contain numbers.";
+  }
 }
 
 function validateGitHub(GitHub) {
-  if (
-    GitHub.length < 6 ||
-    GitHub.length > 39 ||
-    !containsLetter(GitHub) ||
-    containsSpecialChar(GitHub)
-  ) {
-    return "Invalid entry.";
-  } else {
+  const re = /^[a-zA-Z\d]{8,39}$/;
+  if (re.test(GitHub)) {
     return true;
+  } else {
+    return "Invalid GitHub username. GitHub usernames must be 8 to 39 characters long and can only contain letters and numbers.";
   }
 }
 
 function validateSchool(school) {
-  if (school.length < 2 || !containsLetter(school)) {
-    return "Invalid entry.";
-  } else {
+  const re = /^[a-zA-Z\d_-]{2,}$/;
+  if (re.test(school)) {
     return true;
+  } else {
+    return "Invalid school. Schools must be 2 to 30 characters long and can only contain letters, numbers and select special characters.";
   }
 }
 
+// Define title case function
 function toTitleCase(string) {
   const wordArr = [];
   for (const word of string.toLowerCase().split(" ")) {
