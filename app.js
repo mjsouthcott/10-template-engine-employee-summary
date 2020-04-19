@@ -61,8 +61,9 @@ function validateGitHub(GitHub) {
   }
 }
 
+// TODO: fix problem with validation if spaces and periods are allowed
 function validateSchool(school) {
-  const re = /^[a-zA-Z\d_- ]{2,}$/;
+  const re = /^[a-zA-Z\d_-]{2,}$/;
   if (re.test(school)) {
     return true;
   } else {
