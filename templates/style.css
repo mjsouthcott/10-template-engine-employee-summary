@@ -1,0 +1,18 @@
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+.jumbotron {
+  background-color: darkcyan;
+  color: white;
+}
+
+.jumbotron h1 {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: bold;
+}
+
+.employee-card .card-header {
+  background-color: cornflowerblue;
+  color: white;
+}

@@ -193,6 +193,10 @@ async function createTeam() {
       throw err;
     }
   });
+
+  console.log(
+    `Thank you for using TeamCreator. Your file can be found at ${outputPath}.`
+  );
 }
 
 // Call function to create team
