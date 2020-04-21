@@ -8,7 +8,7 @@ GitHub Username: mjsouthcott
 
 ## Description
 
-This is a command line application that takes user input and generates an HTML file depicting a development team. It prompts the user for information about the manager, followed by any number of engineers and interns. It demonstrates the principles of object-oriented and modular programming. It uses HTML5, CSS3, Boostrap, Javascript, Node.js and inquirer.
+This is a command line application that takes user input and generates an HTML file depicting a development team. It prompts the user for information about the manager, followed by any number of engineers and interns. Employee information is stored in an array of objects. The contents of the array are then rendered in HTML and written to a file. It demonstrates the principles of object-oriented and modular programming. It uses HTML5, CSS3, Boostrap, Javascript, Node.js and inquirer.
 
 ## Table of Contents
 
@@ -44,7 +44,7 @@ I'm open to contributions. Please contact me by email (my email address can be f
 
 ## Tests
 
-- This application uses the Jest testing framework to test the Employee, Manager, Engineer and Intern class properties and methods. It passes all tests.
+This application uses the Jest testing framework to test the Employee, Manager, Engineer and Intern class properties and methods. It passes all tests.
 
 ## Badges
 
