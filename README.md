@@ -10,6 +10,8 @@ GitHub Username: mjsouthcott
 
 This is a command line application that takes user input and generates an HTML file depicting a development team. It prompts the user for information about the manager, followed by any number of engineers and interns. Employee information is stored in an array of objects. The contents of the array are then rendered in HTML and written to a file. It demonstrates the principles of object-oriented and modular programming. It uses HTML5, CSS3, Boostrap, Javascript, Node.js and inquirer.
 
+![Screenshot of Result](https://github.com/mjsouthcott/10-template-engine-employee-summary/blob/master/assets/template-engine-employee-summary.PNG)
+
 ## Table of Contents
 
 - Installation
