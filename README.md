@@ -10,8 +10,6 @@ GitHub Username: mjsouthcott
 
 This is a command line application that takes user input and generates an HTML file depicting a development team. It prompts the user for information about the manager, followed by any number of engineers and interns. Employee information is stored in an array of objects. The contents of the array are then rendered in HTML and written to a file. It demonstrates the principles of object-oriented and modular programming. It uses HTML5, CSS3, Boostrap, Javascript, Node.js and inquirer.
 
-![Screenshot of Result](https://github.com/mjsouthcott/10-template-engine-employee-summary/blob/master/assets/template-engine-employee-summary.PNG)
-
 ## Table of Contents
 
 - Installation
@@ -22,11 +20,14 @@ This is a command line application that takes user input and generates an HTML f
 
 ## Installation
 
-To install the application, fork the repository and open it in Visual Studio Code. Open a new Terminal window and navigate to the root directory. Once there, use `npm install` to install the dependencies and then `node app.js` to run the application. Follow the prompts to generate a new team.
+To install the application, clone the repository. To clone the repository using the command line, click "Clone or download" and copy the URL. Then launch Git Bash, navigate to your desired directory and use `git clone` followed by the copied URL. 
 
 ## Usage
 
-Feel free to use this as much as you like!
+Launch Git Bash and navigate to the application's root directory. Once there, use `npm install` to install the dependencies and then `node app.js` to run the application. Follow the prompts to generate a new team.
+
+![Screenshot of Result](https://github.com/mjsouthcott/10-template-engine-employee-summary/blob/master/assets/template-engine-employee-summary.PNG)
+
 
 ## Licence
 
